@@ -6,6 +6,7 @@ app.use(express.json())
 require("dotenv").config()
 const Assignment = require ( "./Assignment.model")
 const Token = require("./Token.model")
+const port = process.env.PORT || 4000
 function connect_with_db () {
     return  mongoose.connect(`mongodb+srv://rahul:${process.env.MONGO_PASSWORD}@cluster0.rxiec.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`)
 
@@ -115,7 +116,7 @@ app.get("/show-exam",async (req,res) => {
     let data = await Assignment.find()
     res.json(data)
 })
-app.listen (4000, async () => {
+app.listen (port, async () => {
     await connect_with_db()
     console.log("listening on port 4000")
 })
