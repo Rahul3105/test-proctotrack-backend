@@ -102,15 +102,17 @@ app.post("/start-assignment", async (req, res) => {
 })
 
 app.post("/register-assignment",async(req,res)=>{
-    let assignment_data = req.body
+    let user = req.body.user;
+    let assignment_data = req.body.assignment_data
+
     await Assignment.create(assignment_data) 
-    // try {
-    //     let url = await start_exam(user, assignment)
-    //     res.send(url)
-    // }catch(err) {
-    //     console.log(err.message)
-    //     res.send(err.message)
-    // }
+    try {
+        let url = await start_exam(user, assignment_data)
+        res.send(url)
+    }catch(err) {
+        console.log(err.message)
+        res.send(err.message)
+    }
 })
 app.get("/show-exam",async (req,res) => {
     let data = await Assignment.find()
