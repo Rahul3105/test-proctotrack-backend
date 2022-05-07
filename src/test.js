@@ -39,7 +39,7 @@ async function get_jwt_token () {
 
 
 async function register_user_to_assignment (user, assignment_data, jwt_token) {
-    console.log(user, assignment_data, jwt_token)
+    console.log(user, assignment_data, jwt_token, "test 42")
     try {
         let res = await axios.post("https://preproduction.verificient.com/G7A1VD03JE7MBBOJ6Q4O/provision/user", {
             "user" : user, "assignment_data" : assignment_data
@@ -53,7 +53,7 @@ async function register_user_to_assignment (user, assignment_data, jwt_token) {
         console.log(res.data)
         return res.data
     }catch(err) {
-        console.log(err.message, 44)
+        console.log(err)
        return err.message
     } 
 }
@@ -104,8 +104,8 @@ app.post("/start-assignment", async (req, res) => {
 app.post("/register-assignment",async(req,res)=>{
     let user = req.body.user;
     let assignment_data = req.body.assignment_data
-
     await Assignment.create(assignment_data) 
+    
     try {
         let url = await start_exam(user, assignment_data)
         res.send(url)
