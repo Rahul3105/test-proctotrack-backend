@@ -7,7 +7,7 @@ app.use(express.json())
 require("dotenv").config()
 app.use(cors())
 
-const cors = require("cors")
+
 const Assignment = require ( "./Assignment.model")
 const Token = require("./Token.model")
 const port = process.env.PORT || 4000
