@@ -4,6 +4,9 @@ const app = express()
 const mongoose = require("mongoose")
 app.use(express.json())
 require("dotenv").config()
+app.use(cors())
+
+const cors = require("cors")
 const Assignment = require ( "./Assignment.model")
 const Token = require("./Token.model")
 const port = process.env.PORT || 4000
@@ -39,7 +42,7 @@ async function get_jwt_token () {
 
 
 async function register_user_to_assignment (user, assignment_data, jwt_token) {
-    console.log(user, assignment_data, jwt_token, "test 42")
+    
     try {
         let res = await axios.post("https://preproduction.verificient.com/G7A1VD03JE7MBBOJ6Q4O/provision/user", {
             "user" : user, "assignment_data" : assignment_data
