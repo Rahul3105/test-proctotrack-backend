@@ -1,8 +1,8 @@
 const axios = require("axios")
+require("dotenv").config()
 module.exports =  async function (user, assignment_data, jwt_token) {
-    
     try {
-        let res = await axios.post("https://preproduction.verificient.com/G7A1VD03JE7MBBOJ6Q4O/provision/user", {
+        let res = await axios.post(`https://in-testing.verificient.com/${process.env.PROCTORTRACK_ACCOUNT_ID}/provision/user/`, {
             "user" : user, "assignment_data" : assignment_data
         }, {
             headers : {
